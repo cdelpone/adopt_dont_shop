@@ -11,6 +11,10 @@ class ApplicationsController < ApplicationController
     application = Application.create!(application_params)
   end
 
+  def new
+
+  end
+
   private
   def application_params
     params.permit(:name, :street, :city, :state, :zip, :description, :status)
