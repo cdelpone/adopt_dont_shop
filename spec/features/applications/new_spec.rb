@@ -1,26 +1,22 @@
 # Starting an Application
-#
-# As a visitor
-# When I visit the pet index page
-# Then I see a link to "Start an Application"
-# When I click this link
-# Then I am taken to the new application page where I see a form
-# When I fill in this form with my:
-#   - Name
-#   - Street Address
-#   - City
-#   - State
-#   - Zip Code
-# And I click submit
-# Then I am taken to the new application's show page
-# And I see my Name, address information, and description of why I would make a good home
-# And I see an indicator that this application is "In Progress"
+# visit the pet index page | see a link to "Start an Application" | click link | redirected to the new application page | see a form |  fill in this form with - Name, - Street Address, - City, - State, - Zip Code
+# click submit | redirected to the new application's show page
+# see my Name, address information, and description of why I would make a good home
+# see an indicator that this application is "In Progress"
 
 require 'rails_helper'
 # rspec spec/features/applications/new_spec.rb
 RSpec.describe 'Start Application' do
   describe 'application form' do
     it 'links from pet index' do
+      visit '/pets'
+
+      expect(page).to have_link('Start an Application')
+
+      click_link 'Start an Application'
+
+      expect(current_path).to eq(new_application_path)
+
     end
 
     it 'has a fillable form' do
