@@ -38,5 +38,49 @@ Rails.application.routes.draw do
   post '/veterinary_offices/:veterinary_office_id/veterinarians', to: 'veterinarians#create'
 
   resources :applications
-  resources :application_pets only: [:create, :update, :destroy]
+  resources :application_pets, only: [:create, :update, :destroy]
 end
+# Prefix Verb   URI Pattern                                                                              Controller#Action
+#                        GET    /                                                                                        application#welcome
+#               shelters GET    /shelters(.:format)                                                                      shelters#index
+#           shelters_new GET    /shelters/new(.:format)                                                                  shelters#new
+#                        GET    /shelters/:id(.:format)                                                                  shelters#show
+#                        POST   /shelters(.:format)                                                                      shelters#create
+#                        GET    /shelters/:id/edit(.:format)                                                             shelters#edit
+#                        PATCH  /shelters/:id(.:format)                                                                  shelters#update
+#                        DELETE /shelters/:id(.:format)                                                                  shelters#destroy
+#                   pets GET    /pets(.:format)                                                                          pets#index
+#                        GET    /pets/:id(.:format)                                                                      pets#show
+#                        GET    /pets/:id/edit(.:format)                                                                 pets#edit
+#                        PATCH  /pets/:id(.:format)                                                                      pets#update
+#                        DELETE /pets/:id(.:format)                                                                      pets#destroy
+#     veterinary_offices GET    /veterinary_offices(.:format)                                                            veterinary_offices#index
+# veterinary_offices_new GET    /veterinary_offices/new(.:format)                                                        veterinary_offices#new
+#                        GET    /veterinary_offices/:id(.:format)                                                        veterinary_offices#show
+#                        POST   /veterinary_offices(.:format)                                                            veterinary_offices#create
+#                        GET    /veterinary_offices/:id/edit(.:format)                                                   veterinary_offices#edit
+#                        PATCH  /veterinary_offices/:id(.:format)                                                        veterinary_offices#update
+#                        DELETE /veterinary_offices/:id(.:format)                                                        veterinary_offices#destroy
+#          veterinarians GET    /veterinarians(.:format)                                                                 veterinarians#index
+#                        GET    /veterinarians/:id(.:format)                                                             veterinarians#show
+#                        GET    /veterinarians/:id/edit(.:format)                                                        veterinarians#edit
+#                        PATCH  /veterinarians/:id(.:format)                                                             veterinarians#update
+#                        DELETE /veterinarians/:id(.:format)                                                             veterinarians#destroy
+#                        GET    /shelters/:shelter_id/pets(.:format)                                                     shelters#pets
+#                        GET    /shelters/:shelter_id/pets/new(.:format)                                                 pets#new
+#                        POST   /shelters/:shelter_id/pets(.:format)                                                     pets#create
+#                        GET    /veterinary_offices/:veterinary_office_id/veterinarians(.:format)                        veterinary_offices#veterinarians
+#                        GET    /veterinary_offices/:veterinary_office_id/veterinarians/new(.:format)                    veterinarians#new
+#                        POST   /veterinary_offices/:veterinary_office_id/veterinarians(.:format)                        veterinarians#create
+#           applications GET    /applications(.:format)                                                                  applications#index
+#                        POST   /applications(.:format)                                                                  applications#create
+#        new_application GET    /applications/new(.:format)                                                              applications#new
+#       edit_application GET    /applications/:id/edit(.:format)                                                         applications#edit
+#            application GET    /applications/:id(.:format)                                                              applications#show
+#                        PATCH  /applications/:id(.:format)                                                              applications#update
+#                        PUT    /applications/:id(.:format)                                                              applications#update
+#                        DELETE /applications/:id(.:format)                                                              applications#destroy
+#       application_pets POST   /application_pets(.:format)                                                              application_pets#create
+#        application_pet PATCH  /application_pets/:id(.:format)                                                          application_pets#update
+#                        PUT    /application_pets/:id(.:format)                                                          application_pets#update
+#                        DELETE /application_pets/:id(.:format)                                                          application_pets#destroy
