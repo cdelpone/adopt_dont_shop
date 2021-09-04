@@ -17,7 +17,7 @@ In this project, students will build upon the code in this repo to create a Pet 
 * Use `within` blocks in tests
 * Track user stories using GitHub Projects
 * Deploy an application to Heroku
-
+ 
 ## Check In
 
 During your Check In, you should be prepared to review your database schema for the many to many relationship, your deployment to Heroku, and your GitHub Projects board.
