@@ -1,11 +1,11 @@
 FactoryBot.define do
   factory :application do
     # name {'Pesto'}
-    name { Faker::Name.first_name }
-    address { Faker::Address.street_address }
-    address { Faker::Address.city }
-    address { Faker::Address.state }
-    address { Faker::Address.zip }
+    name { Faker::Name.name }
+    street { Faker::Address.street_address }
+    city { Faker::Address.city }
+    state { Faker::Address.state }
+    zip { Faker::Address.zip }
   end
 end
 # Faker::Name.name             #=> "Tyshawn Johns Sr."
