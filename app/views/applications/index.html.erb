@@ -1,0 +1,11 @@
+<h1>Application</h1>
+<% @applications.each do |application| %>
+<h2><%= application.name %></h2>
+<h2><a href="/applications/<%= application.id %>"><%= application.name %></a></h2><br>
+<p><%= application.street %>
+  <%= application.city %>
+  <%= application.state %>
+  <%= application.zip %></p><br>
+  <%= application.description %><br>
+  <p><%= application.status %></p><br>
+<% end %>

@@ -1,0 +1,15 @@
+<h1>Application</h1>
+
+<h2><%= @application.name %></h2>
+<p><%= @application.street %>
+<%= @application.city %>
+<%= @application.state %>
+<%= @application.zip %></p><br>
+
+<%= @application.description %><br>
+
+<p><%= @application.status %></p><br>
+
+<% @application.pets.each do |pet| %>
+  <a href="/pets/<%= @pet.id %>"><%= @pet.name %></a><br>
+<% end %>

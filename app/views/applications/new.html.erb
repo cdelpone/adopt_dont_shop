@@ -1,0 +1,12 @@
+<h1>Application Form</h1>
+
+<%= form_with url: application_path, method: :post, local: true do |f| %>
+  <%= f.label :name, "Name:" %>
+  <%= f.text_field :name, :placeholder => "tbd" %><br>
+  <%= f.label :tbd, "tbd" %>
+  <%= f.check_box :tbd %><br>
+  <%= f.label :tbd, "tbd:" %>
+  <%= f.text_field :tbd%><br>
+  <%= f.hidden_field :application_id, :value => @application.id %><br><br>
+  <%= f.submit "Submit Application" %>
+<% end %>
