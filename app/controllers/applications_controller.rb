@@ -5,13 +5,23 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    application = Application.create(application_params)
-    if application.valid?
+    application = Application.new(application_params)
+    if application.save
       redirect_to application_path(application.id)
     else
       flash[:danger] = 'Incomplete form, please complete required fields'
       redirect_to new_application_path
     end
+  end
+
+  def update
+    if !params[:description].blank?
+      application.update(application_params)
+      redirect_to new_application_path
+    else
+      flash[:alert] = 'Must provide a description'
+    end
+      redirect_to application_path(application.id)
   end
 
   def new
