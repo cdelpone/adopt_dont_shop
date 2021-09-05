@@ -21,9 +21,4 @@ class ApplicationsController < ApplicationController
   def application_params
     params.permit(:name, :street, :city, :state, :zip, :description, :status)
   end
-
-  def incomplete_error
-    # flash[:incomplete_error] = 'Incomplete form, please complete required fields'
-    puts 'Incomplete form, please complete required fields'
-  end
 end
