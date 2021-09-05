@@ -42,7 +42,6 @@ RSpec.describe 'Start Application' do
       click_button "Submit Application"
 
       expect(current_path).to eq(application_path(Application.last.id))
-      save_and_open_page
 
       expect(page).to have_content('Melanie')
       expect(page).to have_content('1234 Alphabet Street')
