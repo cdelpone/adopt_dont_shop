@@ -53,18 +53,14 @@
   </div>
 </nav>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <p>Footer - maybe add link to my guithub here</p>
-</div>
 
 <!-- from original repo -->
-<% flash.each do |type, msg| %>
-  <div>
-    <%= msg %>
-  </div>
-<% end %>
+<%= render 'shared/flash' %>
 <%= yield %>
 <!-- end of original repo -->
 
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <p>Footer - maybe add link to my guithub here</p>
+</div>
   </body>
 </html>

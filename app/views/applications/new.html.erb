@@ -2,28 +2,28 @@
 
 <%= form_with url: applications_path, method: :post, local: true do |f| %>
 <div class="form-floating mb-3">
-  <%= f.label :name, for: "floating_input1" %>
   <%= f.text_field :name, class: "form-control", id: "floating_input1", placeholder: "Name" %><br>
+  <%= f.label :name, for: "floating_input1" %>
 </div>
 <div class="form-floating mb-3">
-  <%= f.label :street, for: "floating_input2" %>
   <%= f.text_field :street, class: "form-control", id: "floating_input2", placeholder: "Street"  %><br>
+  <%= f.label :street, for: "floating_input2" %>
 </div>
 <div class="form-floating mb-3">
-  <%= f.label :city, for: "floating_input3" %>
   <%= f.text_field :city, class: "form-control", id: "floating_input3", placeholder: "City"  %><br>
+  <%= f.label :city, for: "floating_input3" %>
 </div>
 <div class="form-floating mb-3">
-  <%= f.label :state, for: "floating_input4" %>
   <%= f.text_field :state, class: "form-control", id: "floating_input4", placeholder: "State"  %><br>
+  <%= f.label :state, for: "floating_input4" %>
 </div>
 <div class="form-floating mb-3">
-  <%= f.label :zip, for: "floating_input5" %>
   <%= f.text_field :zip, class: "form-control", id: "floating_input5", placeholder: "Zip Code"  %><br>
+  <%= f.label :zip, for: "floating_input5" %>
 </div>
 <div class="form-floating mb-3">
-  <%= f.label :description, for: "floating_input5" %>
   <%= f.text_field :description, class: "form-control", id: "floating_input5", placeholder: "Description of why I would make a good home"  %><br>
+  <%= f.label :description, for: "floating_input5" %>
 </div>
   <%= f.submit "Submit Application" %>
 <% end %>
