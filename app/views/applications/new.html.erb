@@ -2,8 +2,22 @@
 
 <%= form_with url: applications_path, method: :post, local: true do |f| %>
   <%= f.label :name, "Name:" %>
-  <%= f.text_field :name, :placeholder => "Name" %><br>
-  <%= f.label :steet, "Street Address:" %>
-  <%= f.text_field :street %><br>
+  <%= f.text_field :name, :class => "form-control", :placeholder => "Name" %><br>
+
+  <%= f.label :street, "Street Address:" %>
+  <%= f.text_field :street, :placeholder => "Street Address"  %><br>
+
+  <%= f.label :city, "City:" %>
+  <%= f.text_field :city, :placeholder => "City"  %><br>
+
+  <%= f.label :state, "State:" %>
+  <%= f.text_field :state, :placeholder => "State"  %><br>
+
+  <%= f.label :zip, "Zip Code:" %>
+  <%= f.text_field :zip, :placeholder => "Zip Code"  %><br>
+
+  <%= f.label :description, "Description of why I would make a good home:" %>
+  <%= f.text_field :description, :placeholder => "Description of why I would make a good home"  %><br>
+
   <%= f.submit "Submit Application" %>
 <% end %>
