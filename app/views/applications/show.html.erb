@@ -8,7 +8,7 @@
 
 <%= @application.description %><br>
 
-<p><%= @application.status %></p><br>
+<p>Application Status: <%= @application.status %></p><br>
 
 <% @application.pets.each do |pet| %>
   <a href="/pets/<%= @pet.id %>"><%= @pet.name %></a><br>
