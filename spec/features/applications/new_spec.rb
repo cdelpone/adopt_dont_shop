@@ -66,13 +66,15 @@ RSpec.describe 'Start Application' do
       click_button "Submit Application"
 
       expect(current_path).to eq(new_application_path)
-
-      expect(page).to have_content('Incomplete form, please complete required fields')
     end
 
     it 'displays an incomplete form error' do
+      visit new_application_path
+      fill_in 'Name', with: 'Melanie'
 
+      click_button "Submit Application"
+
+      expect(page).to have_content('Incomplete form, please complete required fields')
     end
   end
-
 end
