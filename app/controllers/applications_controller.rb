@@ -9,7 +9,7 @@ class ApplicationsController < ApplicationController
     redirect_to application_path(application.id)
   end
 
-  def new
+  def new 
   end
 
   private
