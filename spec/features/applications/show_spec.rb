@@ -22,7 +22,7 @@ RSpec.describe 'application show' do
       pet = Pet.create!(name: 'Scrappy', age: 1, breed: 'Great Dane', adoptable: true, shelter_id: shelter.id)
       application = Application.create!(name: 'Xtina', street: '3431 N Vine Street', city: 'Denver', state: 'Colorado', zip: '85523', description: 'this is a description')
 
-      visit '/applications'
+      visit application_path(application)
 
       expect(page).to have_content(application.name)
       expect(page).to have_content(application.street)
