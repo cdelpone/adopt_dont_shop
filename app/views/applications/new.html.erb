@@ -1,23 +1,29 @@
 <h1>Application Form</h1>
 
 <%= form_with url: applications_path, method: :post, local: true do |f| %>
-  <%= f.label :name, "Name:" %>
-  <%= f.text_field :name, :class => "form-control", :placeholder => "Name" %><br>
-
-  <%= f.label :street, "Street Address:" %>
-  <%= f.text_field :street, :placeholder => "Street Address"  %><br>
-
-  <%= f.label :city, "City:" %>
-  <%= f.text_field :city, :placeholder => "City"  %><br>
-
-  <%= f.label :state, "State:" %>
-  <%= f.text_field :state, :placeholder => "State"  %><br>
-
-  <%= f.label :zip, "Zip Code:" %>
-  <%= f.text_field :zip, :placeholder => "Zip Code"  %><br>
-
-  <%= f.label :description, "Description of why I would make a good home:" %>
-  <%= f.text_field :description, :placeholder => "Description of why I would make a good home"  %><br>
-
+<div class="form-floating mb-3">
+  <%= f.label :name, for: "floating_input1" %>
+  <%= f.text_field :name, class: "form-control", id: "floating_input1", :placeolder: "Name" %><br>
+</div>
+<div class="form-floating mb-3">
+  <%= f.label :street, for: "floating_input2" %>
+  <%= f.text_field :street, class: "form-control", id: "floating_input2", :placeolder: "Street"  %><br>
+</div>
+<div class="form-floating mb-3">
+  <%= f.label :city, for: "floating_input3" %>
+  <%= f.text_field :city, class: "form-control", id: "floating_input3", :placeolder: "City"  %><br>
+</div>
+<div class="form-floating mb-3">
+  <%= f.label :state, for: "floating_input4" %>
+  <%= f.text_field :state, class: "form-control", id: "floating_input4", :placeolder: "State"  %><br>
+</div>
+<div class="form-floating mb-3">
+  <%= f.label :zip, for: "floating_input5" %>
+  <%= f.text_field :zip, class: "form-control", id: "floating_input5", :placeolder: "Zip Code"  %><br>
+</div>
+<div class="form-floating mb-3">
+  <%= f.label :description,for: "floating_input5" %>
+  <%= f.text_field :description, class: "form-control", id: "floating_input5", :placeolder: "Description of why I would make a good home"  %><br>
+</div>
   <%= f.submit "Submit Application" %>
 <% end %>
