@@ -71,17 +71,72 @@ RSpec.describe 'Application Show Page' do
       shelter = Shelter.create!(name: 'Mystery Building', city: 'Irvine CA', foster_program: false, rank: 9)
       pet = Pet.create!(name: 'Scrappy', age: 1, breed: 'Great Dane', adoptable: true, shelter_id: shelter.id)
       application = Application.create!(name: 'Xtina', street: '3431 N Vine Street', city: 'Denver', state: 'Colorado', zip: '85523', description: 'this is a description')
-      application_pets = ApplicationPet.create!(pet: pet, application: application)
+      application_pets = ApplicationPet.create!(pet_id: pet.id, application_id: application.id)
+      # application.pets << pet
+      # pet.applications << application
 
       visit application_path(application)
       fill_in 'Search', with: 'Scrap'
       click_button 'Search'
-      save_and_open_page
+      expect(page).to have_content('Scrappy')
+      expect(page).to have_button("Adopt this Pet")
+      expect(current_path).to eq(application_path(application))
+      expect(application.pets).to eq([pet])
+    end
+  end
+
+  describe 'Submit an Application' do
+    # visit an application's show page | And I have added one or more pets to the application | see a section to submit my application | see an input to enter why I would make a good owner for these pet(s) | fill in desciption | click button to submit this application | redirected to the application's show page | see an indicator that the application is "Pending" | see all the pets that I want to adopt |  do not see a section to add more pets to this application
+    it 'has a button to submit an application' do
+      shelter = Shelter.create!(name: 'Mystery Building', city: 'Irvine CA', foster_program: false, rank: 9)
+      pet = Pet.create!(name: 'Scrappy', age: 1, breed: 'Great Dane', adoptable: true, shelter_id: shelter.id)
+      application = Application.create!(name: 'Xtina', street: '3431 N Vine Street', city: 'Denver', state: 'Colorado', zip: '85523', description: 'this is a description')
+      application_pets = ApplicationPet.create!(pet_id: pet.id, application_id: application.id)
+
+      visit application_path(application)
+      fill_in 'Search', with: 'Scrap'
+      click_button 'Search'
       expect(page).to have_content('Scrappy')
       expect(page).to have_button("Adopt this Pet")
       expect(current_path).to eq(application_path(application))
       expect(application.pets).to eq([pet])
 
+      expect(page).to have_content("Submitting an Application")
+      expect(page).to have_content("Please provide a brief description of why you would make a good owner for these pet(s)")
+      fill_in "Please provide a brief description of why you would make a good owner for these pet(s)", with: 'This is why Scrappy will love me!'
+      click_button "Submit Application"
+    end
+
+    it 'app status changes to pending and cant add more pets after submitting an application ' do
+      shelter = Shelter.create!(name: 'Mystery Building', city: 'Irvine CA', foster_program: false, rank: 9)
+      pet = Pet.create!(name: 'Scrappy', age: 1, breed: 'Great Dane', adoptable: true, shelter_id: shelter.id)
+      application = Application.create!(name: 'Xtina', street: '3431 N Vine Street', city: 'Denver', state: 'Colorado', zip: '85523', description: 'this is a description')
+      application_pets = ApplicationPet.create!(pet_id: pet.id, application_id: application.id)
+
+      visit application_path(application)
+      fill_in 'Search', with: 'Scrap'
+      click_button 'Search'
+      expect(page).to have_content('Scrappy')
+      expect(page).to have_button("Adopt this Pet")
+      expect(current_path).to eq(application_path(application))
+      expect(application.pets).to eq([pet])
+
+      expect(page).to have_content("Submitting an Application")
+      expect(page).to have_content("Please provide a brief description of why you would make a good owner for these pet(s)")
+      fill_in "Please provide a brief description of why you would make a good owner for these pet(s)", with: 'This is why Scrappy will love me!'
+      click_button "Submit Application"
+      # saves application state, reload updates app state
+      application.reload
+
+      expect(current_path).to eq(application_path(application))
+      expect(application.status).to eq("Pending")
+
+      expect(page).to have_content("Pending")
+      expect(page).to have_no_content("In Progress")
+
+      expect(page).to have_no_content("Add a Pet to this Application")
+      expect(page).to have_no_content("Search")
+      expect(page).to have_no_button("Search")
     end
   end
 end
