@@ -13,6 +13,5 @@ class ApplicationPetsController < ApplicationController
   private
   def app_pets_params
     params.permit(:application_id, :pet_id)
-    # params.permit(application_id: "#{@application.id}", pet_id: "#{@pet.id}")
   end
 end
