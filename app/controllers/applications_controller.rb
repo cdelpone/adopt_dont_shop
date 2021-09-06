@@ -2,6 +2,9 @@ class ApplicationsController < ApplicationController
 
   def show
     @application = Application.find(params[:id])
+    if params[:search].present?
+      @pets = Pet.search(params[:search])
+    end
   end
 
   def create
@@ -16,7 +19,7 @@ class ApplicationsController < ApplicationController
 
   def update
     if !params[:description].blank?
-      application.update(application_params)
+      application.update(application_params.merge({status: "Pending"}))
       redirect_to new_application_path
     else
       flash[:alert] = 'Must provide a description'
