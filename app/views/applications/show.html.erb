@@ -28,6 +28,6 @@
 <% if @pets %>
   <% @pets.each do |pet| %>
     <%= link_to pet.name, "/pets/#{pet.id}" %>
-    <%= button_to 'Adopt this Pet', application_pets_path, method: :post %>
+    <%= button_to 'Adopt this Pet', application_pets_path({application_id: @application.id, pet_id: pet.id}), method: :post %>
   <% end %>
 <% end %>

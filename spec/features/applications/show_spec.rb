@@ -71,17 +71,19 @@ RSpec.describe 'Application Show Page' do
       shelter = Shelter.create!(name: 'Mystery Building', city: 'Irvine CA', foster_program: false, rank: 9)
       pet = Pet.create!(name: 'Scrappy', age: 1, breed: 'Great Dane', adoptable: true, shelter_id: shelter.id)
       application = Application.create!(name: 'Xtina', street: '3431 N Vine Street', city: 'Denver', state: 'Colorado', zip: '85523', description: 'this is a description')
-      application_pets = ApplicationPet.create!(pet: pet, application: application)
+      application_pets = ApplicationPet.create!(pet_id: pet.id, application_id: application.id)
+      # application.pets << pet
+      # pet.applications << application
 
       visit application_path(application)
       fill_in 'Search', with: 'Scrap'
       click_button 'Search'
-      save_and_open_page
+      # save_and_open_page
       expect(page).to have_content('Scrappy')
       expect(page).to have_button("Adopt this Pet")
       expect(current_path).to eq(application_path(application))
+      require "pry"; binding.pry
       expect(application.pets).to eq([pet])
-
     end
   end
 end
