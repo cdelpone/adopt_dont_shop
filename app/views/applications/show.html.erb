@@ -10,17 +10,18 @@
 <b>Description</b><br>
   <p><%= @application.description %></p><br>
 <b>Application Status</b><br>
-  <p><%= @application.status %></p>
+  <%= @application.status %><br><br>
 
-  <% @application.pets.each do |pet| %>
-    <a href="/pets/<%= pet.id %>"><%= pet.name %></a><br>
-  <% end %>
+  <b>My Pets</b><br>
+<% @application.pets.each do |pet| %>
+  <a href="/pets/<%= pet.id %>"><%= pet.name %></a><br>
+<% end %><br>
 
 <% if @application.status == "In Progress" %>
     <%= form_with url: application_path(@application.id), method: :get, local: true do |f| %>
-      <p>Add a Pet to this Application</p>
-      <%= f.label :search %>
-      <%= f.text_field :search %>
+      <p><b>Add a Pet to this Application</b></p>
+      <%= f.label :search %><br>
+      <%= f.text_field :search %><br>
       <%= f.submit "Search" %>
   <% end %>
 <% end %>
@@ -29,5 +30,14 @@
   <% @pets.each do |pet| %>
     <%= link_to pet.name, "/pets/#{pet.id}" %>
     <%= button_to 'Adopt this Pet', application_pets_path({application_id: @application.id, pet_id: pet.id}), method: :post %>
+  <% end %>
+<% end %><br>
+
+<% if !@application.pets.empty? && @application.status != "Pending" %>
+    <%= form_with url: application_path(@application.id), method: :patch, local: true do |f| %>
+      <p><b>Submitting an Application</b></p>
+      <%= f.label :description, "Please provide a brief description of why you would make a good owner for these pet(s)" %><br>
+      <%= f.text_field :description %><br>
+      <%= f.submit "Submit Application" %>
   <% end %>
 <% end %>

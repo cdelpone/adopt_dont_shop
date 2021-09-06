@@ -18,9 +18,9 @@ class ApplicationsController < ApplicationController
   end
 
   def update
+    application = Application.find(params[:id])
     if !params[:description].blank?
       application.update(application_params.merge({status: "Pending"}))
-      redirect_to new_application_path
     else
       flash[:alert] = 'Must provide a description'
     end
