@@ -139,4 +139,19 @@ RSpec.describe 'Application Show Page' do
       expect(page).to have_no_button("Search")
     end
   end
+
+  describe 'No Pets on an Application' do
+    # visit an application's show page | I have not added any pets to the application |  do not see a section to submit my application
+    it 'doesnt have a button to submit an application' do
+      shelter = Shelter.create!(name: 'Mystery Building', city: 'Irvine CA', foster_program: false, rank: 9)
+      pet = Pet.create!(name: 'Scrappy', age: 1, breed: 'Great Dane', adoptable: true, shelter_id: shelter.id)
+      application = Application.create!(name: 'Xtina', street: '3431 N Vine Street', city: 'Denver', state: 'Colorado', zip: '85523', description: 'this is a description')
+
+      visit application_path(application)
+      expect(application.pets).to eq([])
+
+      expect(page).to have_no_content("Submitting an Application")
+      expect(page).to have_no_button("Submit Application")
+    end
+  end
 end
