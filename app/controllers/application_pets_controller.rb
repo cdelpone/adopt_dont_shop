@@ -2,6 +2,7 @@ class ApplicationPetsController < ApplicationController
 
   def create
     application_pets = ApplicationPet.create!(app_pets_params)
+    require "pry"; binding.pry
     if application_pets.save
       flash[:success] = "Pet added"
     else
@@ -12,6 +13,6 @@ class ApplicationPetsController < ApplicationController
 
   private
   def app_pets_params
-    params.permit(:application_id, :pet_id)
+    params.permit(:application, :pet)
   end
 end
