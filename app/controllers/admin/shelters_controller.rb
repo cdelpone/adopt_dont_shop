@@ -1,10 +1,7 @@
-class AdminSheltersController < ApplicationController
+class Admin::SheltersController < ApplicationController
+
   def index
     if params[:sort].present? && params[:sort] == "reverse alpha"
-      @adminshelters = AdminShelter.reverse_order_by_name
-    elsif params[:search].present?
-      @adminshelters = AdminShelter.search(params[:search])
-    else
       @adminshelters = AdminShelter.reverse_order_by_name
     end
   end
