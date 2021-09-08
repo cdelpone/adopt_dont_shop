@@ -1,0 +1,8 @@
+<%= @application.name %>
+<% if @application.status == "Pending" %>
+    <%= form_with url: "/admin/applications/#{@application.id}", method: :post, local: true do |f| %>
+      <p><b>Approve</b></p>
+      <%= f.label :approve %><br>
+      <%= f.submit "Approve" %>
+  <% end %>
+<% end %>
