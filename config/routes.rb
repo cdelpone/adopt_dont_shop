@@ -40,9 +40,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :shelters
   end
-  # map.namespace :admin do |admin|
-  #   admin.root :controller => "shelters"
-  # end
+
+  namespace :admin do
+    resources :applications
+  end
+
   resources :applications
   resources :application_pets, only: [:create, :update, :destroy]
 end
