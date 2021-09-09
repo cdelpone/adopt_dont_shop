@@ -1,0 +1,11 @@
+<%= @application.name %><br>
+<%= @application.status %><br><br>
+
+  <b>My Pets</b>
+  <% @application.pets.each do |pet| %><br>
+    <%= pet.name %><br>
+    <% if @application.status == "Pending" %>
+      <%= button_to 'Approve', admin_application_path(@application.id), params: :approve, method: :patch %>
+      <%= button_to 'Reject', admin_application_path(@application.id), params: :reject, method: :patch %>
+    <% end %>
+  <% end %>

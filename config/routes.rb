@@ -37,35 +37,14 @@ Rails.application.routes.draw do
   get '/veterinary_offices/:veterinary_office_id/veterinarians/new', to: 'veterinarians#new'
   post '/veterinary_offices/:veterinary_office_id/veterinarians', to: 'veterinarians#create'
 
+  namespace :admin do
+    resources :shelters
+  end
+
+  namespace :admin do
+    resources :applications
+  end
+
   resources :applications
   resources :application_pets, only: [:create, :update, :destroy]
 end
-# Prefix Verb   URI Pattern                                           Controller#Action
-#                  GET    /                                           application#welcome
-#         shelters GET    /shelters(.:format)                         shelters#index
-#     shelters_new GET    /shelters/new(.:format)                     shelters#new
-#                  GET    /shelters/:id(.:format)                     shelters#show
-#                  POST   /shelters(.:format)                         shelters#create
-#                  GET    /shelters/:id/edit(.:format)                shelters#edit
-#                  PATCH  /shelters/:id(.:format)                     shelters#update
-#                  DELETE /shelters/:id(.:format)                     shelters#destroy
-#             pets GET    /pets(.:format)                             pets#index
-#                  GET    /pets/:id(.:format)                         pets#show
-#                  GET    /pets/:id/edit(.:format)                    pets#edit
-#                  PATCH  /pets/:id(.:format)                         pets#update
-#                  DELETE /pets/:id(.:format)                         pets#destroy
-#                  GET    /shelters/:shelter_id/pets(.:format)        shelters#pets
-#                  GET    /shelters/:shelter_id/pets/new(.:format)    pets#new
-#                  POST   /shelters/:shelter_id/pets(.:format)        pets#create
-#     applications GET    /applications(.:format)                     applications#index
-#                  POST   /applications(.:format)                     applications#create
-#  new_application GET    /applications/new(.:format)                 applications#new
-# edit_application GET    /applications/:id/edit(.:format)            applications#edit
-#      application GET    /applications/:id(.:format)                 applications#show
-#                  PATCH  /applications/:id(.:format)                 applications#update
-#                  PUT    /applications/:id(.:format)                 applications#update
-#                  DELETE /applications/:id(.:format)                 applications#destroy
-# application_pets POST   /application_pets(.:format)                 application_pets#create
-#  application_pet PATCH  /application_pets/:id(.:format)             application_pets#update
-#                  PUT    /application_pets/:id(.:format)             application_pets#update
-#                  DELETE /application_pets/:id(.:format)             application_pets#destroy

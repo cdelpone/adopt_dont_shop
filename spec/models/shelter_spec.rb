@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+# rspec spec/models/shelter_spec.rb
 RSpec.describe Shelter, type: :model do
   describe 'relationships' do
     it { should have_many(:pets) }
@@ -39,6 +39,12 @@ RSpec.describe Shelter, type: :model do
     describe '#order_by_number_of_pets' do
       it 'orders the shelters by number of pets they have, descending' do
         expect(Shelter.order_by_number_of_pets).to eq([@shelter_1, @shelter_3, @shelter_2])
+      end
+    end
+
+    describe '#reverse_order_by_name' do
+      it 'orders the shelters in reverse alphabetical order by name' do
+        expect(Shelter.reverse_order_by_name).to eq([@shelter_2, @shelter_3, @shelter_1])
       end
     end
   end
