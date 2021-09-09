@@ -1,9 +1,3 @@
-# visit an admin application show page ('/admin/applications/:id')
-# For every pet that the application is for, see a button to approve the application for that specific pet
-# click that button
-# redirected back to the admin application show page
-# And next to the pet that I approved, I do not see a button to approve this pet
-# And instead I see an indicator next to the pet that they have been approved
 require 'rails_helper'
 # rspec spec/features/admin/applications/show_spec.rb
 RSpec.describe 'Admin Application Show Page' do
@@ -15,7 +9,7 @@ RSpec.describe 'Admin Application Show Page' do
       application_pets = ApplicationPet.create!(pet_id: pet.id, application_id: application.id)
 
       visit admin_application_path(application.id)
-      # save_and_open_page
+
       expect(page).to have_button("Approve")
     end
   end
