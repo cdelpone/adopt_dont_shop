@@ -1,8 +1,11 @@
-<%= @application.name %>
-<% if @application.status == "Pending" %>
-    <%= form_with url: "/admin/applications/#{@application.id}", method: :post, local: true do |f| %>
-      <p><b>Approve</b></p>
-      <%= f.label :approve %><br>
-      <%= f.submit "Approve" %>
+<%= @application.name %><br>
+<%= @application.status %><br><br>
+
+  <b>My Pets</b>
+  <% @application.pets.each do |pet| %><br>
+    <%= pet.name %><br>
+    <% if @application.status == "Pending" %>
+      <%= button_to 'Approve', admin_application_path(@application.id), params: :approve, method: :patch %>
+      <%= button_to 'Reject', admin_application_path(@application.id), params: :reject, method: :patch %>
+    <% end %>
   <% end %>
-<% end %>
