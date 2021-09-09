@@ -47,6 +47,15 @@ RSpec.describe Shelter, type: :model do
         expect(Shelter.reverse_order_by_name).to eq([@shelter_2, @shelter_3, @shelter_1])
       end
     end
+
+    describe '#pending_apps' do
+      it 'renders shelters with pending applications' do
+        application = Application.create!(name: 'Xtina', street: '3431 N Vine Street', city: 'Denver', state: 'Colorado', zip: '85523', description: 'this is a description', status: 'Pending')
+        application_pets = ApplicationPet.create!(pet_id: @pet_2.id, application_id: application.id)
+
+        expect(Shelter.pending_apps).to eq([@shelter_1])
+      end
+    end
   end
 
   describe 'instance methods' do
