@@ -3,12 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Application Show Page' do
   describe 'Application Show Page' do
     it 'can see application fillable fields' do
-      # can add a specific shelter here
-      # pet = create(:pet)
-      # this would create a list of 20 pets => create_list(:pet, 20)
-      # application = create(:application)
-      # can also do something like this => application = create(:application, name: 'Pesto')
-      # application_pet = ApplicationPet.create!(pet_id: pet.id, application_id: application.id)
       shelter = Shelter.create!(name: 'Mystery Building', city: 'Irvine CA', foster_program: false, rank: 9)
       pet = Pet.create!(name: 'Scrappy', age: 1, breed: 'Great Dane', adoptable: true, shelter_id: shelter.id)
       application = Application.create!(name: 'Xtina', street: '3431 N Vine Street', city: 'Denver', state: 'Colorado', zip: '85523', description: 'this is a description')
@@ -31,7 +25,7 @@ RSpec.describe 'Application Show Page' do
       application = Application.create!(name: 'Xtina', street: '3431 N Vine Street', city: 'Denver', state: 'Colorado', zip: '85523', description: 'this is a description')
 
       visit application_path(application)
-      # save_and_open_page
+
       expect(page).to have_content("In Progress")
       expect(page).to have_content("Add a Pet to this Application")
       expect(page).to have_content("Search")
@@ -42,7 +36,9 @@ RSpec.describe 'Application Show Page' do
       expect(page).to have_no_content("Rejected")
 
       fill_in 'Search', with: 'Scrap'
+
       click_button 'Search'
+
       expect(page).to have_content('Scrappy')
     end
 
@@ -65,12 +61,13 @@ RSpec.describe 'Application Show Page' do
       pet = Pet.create!(name: 'Scrappy', age: 1, breed: 'Great Dane', adoptable: true, shelter_id: shelter.id)
       application = Application.create!(name: 'Xtina', street: '3431 N Vine Street', city: 'Denver', state: 'Colorado', zip: '85523', description: 'this is a description')
       application_pets = ApplicationPet.create!(pet_id: pet.id, application_id: application.id)
-      # application.pets << pet
-      # pet.applications << application
 
       visit application_path(application)
+
       fill_in 'Search', with: 'Scrap'
+
       click_button 'Search'
+
       expect(page).to have_content('Scrappy')
       expect(page).to have_button("Adopt this Pet")
       expect(current_path).to eq(application_path(application))
@@ -86,17 +83,22 @@ RSpec.describe 'Application Show Page' do
       application_pets = ApplicationPet.create!(pet_id: pet.id, application_id: application.id)
 
       visit application_path(application)
+
       fill_in 'Search', with: 'Scrap'
+
       click_button 'Search'
+
       expect(page).to have_content('Scrappy')
       expect(page).to have_button("Adopt this Pet")
+
       expect(current_path).to eq(application_path(application))
+
       expect(application.pets).to eq([pet])
 
       expect(page).to have_content("Submitting an Application")
       expect(page).to have_content("Please provide a brief description of why you would make a good owner for these pet(s)")
-      fill_in "Please provide a brief description of why you would make a good owner for these pet(s)", with: 'This is why Scrappy will love me!'
-      click_button "Submit Application"
+
+      expect(page).to have_button("Submit Application")
     end
 
     it 'app status changes to pending and cant add more pets after submitting an application ' do
@@ -106,8 +108,11 @@ RSpec.describe 'Application Show Page' do
       application_pets = ApplicationPet.create!(pet_id: pet.id, application_id: application.id)
 
       visit application_path(application)
+
       fill_in 'Search', with: 'Scrap'
+
       click_button 'Search'
+
       expect(page).to have_content('Scrappy')
       expect(page).to have_button("Adopt this Pet")
       expect(current_path).to eq(application_path(application))
@@ -115,19 +120,23 @@ RSpec.describe 'Application Show Page' do
 
       expect(page).to have_content("Submitting an Application")
       expect(page).to have_content("Please provide a brief description of why you would make a good owner for these pet(s)")
+
       fill_in "Please provide a brief description of why you would make a good owner for these pet(s)", with: 'This is why Scrappy will love me!'
+
       click_button "Submit Application"
-      # saves application state, reload updates app state
+
       application.reload
 
       expect(current_path).to eq(application_path(application))
+
       expect(application.status).to eq("Pending")
 
       expect(page).to have_content("Pending")
-      expect(page).to have_no_content("In Progress")
 
+      expect(page).to have_no_content("In Progress")
       expect(page).to have_no_content("Add a Pet to this Application")
       expect(page).to have_no_content("Search")
+
       expect(page).to have_no_button("Search")
     end
   end
@@ -139,6 +148,7 @@ RSpec.describe 'Application Show Page' do
       application = Application.create!(name: 'Xtina', street: '3431 N Vine Street', city: 'Denver', state: 'Colorado', zip: '85523', description: 'this is a description')
 
       visit application_path(application)
+
       expect(application.pets).to eq([])
 
       expect(page).to have_no_content("Submitting an Application")
