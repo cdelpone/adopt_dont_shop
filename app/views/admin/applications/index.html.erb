@@ -1,0 +1,9 @@
+<% @applications.each do |application| %>
+  Applicant Name: <%= application.name %><br>
+  Application Created at: <%= application.created_at %><br>
+  Application Status: <%= application.status %><br>
+  <b>Application Pets</b>
+    <% application.pets.each do |pet| %><br>
+      <%= pet.name %><br>
+    <% end %><br>
+<% end %>
