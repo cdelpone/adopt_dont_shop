@@ -17,7 +17,6 @@ RSpec.describe 'Admin Application Index' do
     application_pets1 = ApplicationPet.create!(pet_id: pet2.id, application_id: application1.id)
     application_pets2 = ApplicationPet.create!(pet_id: pet3.id, application_id: application2.id)
     application_pets2 = ApplicationPet.create!(pet_id: pet4.id, application_id: application2.id)
-    require "pry"; binding.pry
 
     visit admin_applications_path
     save_and_open_page
