@@ -3,4 +3,6 @@ class ApplicationPet < ApplicationRecord
   belongs_to :application
 
   validates_presence_of :application_id, :pet_id
+
+  enum status: %w(reject approve)
 end
