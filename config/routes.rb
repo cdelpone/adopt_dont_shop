@@ -39,10 +39,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :shelters
-  end
-
-  namespace :admin do
     resources :applications
+    resources :application_pets, only: [:create, :update, :destroy]
   end
 
   resources :applications
