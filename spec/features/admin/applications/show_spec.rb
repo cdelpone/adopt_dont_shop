@@ -25,8 +25,8 @@ RSpec.describe 'Admin Application Show Page' do
       pet = shelter.pets.create(name: 'Scrappy', age: 1, breed: 'Great Dane', adoptable: true)
       pet2 = shelter.pets.create(name: 'Pesto', age: 5, breed: 'Best Breed', adoptable: true)
       application = Application.create(name: 'Xtina', street: '3431 N Vine Street', city: 'Denver', state: 'Colorado', zip: '85523', description: 'this is a description', status: 'Pending')
-      application_pets = ApplicationPet.create!(pet_id: pet.id, application_id: application.id)
-      application_pets = ApplicationPet.create!(pet_id: pet2.id, application_id: application.id)
+      application_pet1 = ApplicationPet.create!(pet_id: pet.id, application_id: application.id)
+      application_pet2 = ApplicationPet.create!(pet_id: pet2.id, application_id: application.id)
 
       visit admin_application_path(application.id)
 
@@ -36,7 +36,10 @@ RSpec.describe 'Admin Application Show Page' do
 
       application.reload
 
+      expect(application_pets2.pet_status).to eq("Approved")
       expect(page).to have_no_content("Approve Pesto")
+      expect(page).to have_no_content("Approve Scrappy")
+      expect(page).to have_no_button("Approve Scrappy")
     end
   end
 
@@ -49,7 +52,7 @@ RSpec.describe 'Admin Application Show Page' do
 
       visit admin_application_path(application.id)
 
-      # expect(page).to have_button("Reject")
+      expect(page).to have_button("Reject")
     end
   end
 end
