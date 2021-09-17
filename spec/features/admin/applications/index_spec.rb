@@ -19,7 +19,6 @@ RSpec.describe 'Admin Application Index' do
     application_pets2 = ApplicationPet.create!(pet_id: pet4.id, application_id: application2.id)
 
     visit admin_applications_path
-    save_and_open_page
 
     expect(application1.name).to appear_before(application2.name)
 
