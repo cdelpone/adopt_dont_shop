@@ -10,8 +10,11 @@ class ApplicationPetsController < ApplicationController
     end
   end
 
+  def update
+  end
+
   private
   def app_pets_params
-    params.permit(:application_id, :pet_id)
+    params.permit(:id, :application_id, :pet_id, :pet_status)
   end
 end
